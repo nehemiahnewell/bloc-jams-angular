@@ -1,3 +1,5 @@
+/*global angular*/
+
 (function() {
   function Fixtures() {
     var Fixtures = {};
