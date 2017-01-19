@@ -38,9 +38,9 @@
     };
      
     return Fixtures;
-  }
+}
  
-  angular
-    .module('blocJams')
-    .factory('Fixtures', Fixtures);
+angular
+  .module('blocJams')
+  .factory('Fixtures', Fixtures);
 })();
