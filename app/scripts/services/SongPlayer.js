@@ -43,10 +43,20 @@
       currentBuzzObject.play();
       song.playing = true;
     };
+    /**
+    * @function stopSong
+    * @desc Plays the currently set song.
+    * @param {Object} song
+    */
+    var stopSong = function(song) {
+      currentBuzzObject.stop();
+      song.playing = false;
+    };
     
     /**
-    * @desc index of song
-    * @type int
+    * @function getSongIndex
+    * @desc return index of song
+    * @return int
     */
     var getSongIndex = function(song) {
       return currentAlbum.songs.indexOf(song);
@@ -89,22 +99,37 @@
     /**
     * @function previous
     * @desc Sets the song to the previous song on the index and plays it if it 
-    * exists. Otherwise sets it to the first song.
+    * exists. Otherwise sets it stops playing.
     */
     SongPlayer.previous = function() {
       var currentSongIndex = getSongIndex(SongPlayer.currentSong);
       currentSongIndex--;
-      
+      var song = currentAlbum.songs[currentSongIndex];
       if (currentSongIndex < 0) {
-        currentBuzzObject.stop();
-        SongPlayer.currentSong.playing = null;
+        stopSong(song);
       } else {
-        var song = currentAlbum.songs[currentSongIndex];
         setSong(song);
         playSong(song);
       }
     };
     
+    
+    /**
+    * @function next
+    * @desc Sets the song to the next song on the index and plays it if it 
+    * exists. Otherwise sets it stops playing.
+    */
+    SongPlayer.next = function() {
+      var currentSongIndex = getSongIndex(SongPlayer.currentSong);
+      currentSongIndex++;
+      var song = currentAlbum.songs[currentSongIndex];
+      if (currentSongIndex >= currentAlbum.songs.length) {
+        stopSong(song);
+      } else {
+        setSong(song);
+        playSong(song);
+      }
+    };    
     return SongPlayer;
   }
  
