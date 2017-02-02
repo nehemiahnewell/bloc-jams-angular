@@ -46,6 +46,7 @@
     * @param {Object} song
     */
     var playSong = function(song) {
+      SongPlayer.setVolume(SongPlayer.volume);
       currentBuzzObject.play();
       song.playing = true;
     };
@@ -72,12 +73,30 @@
     * @type {Boolean}
     */
     SongPlayer.currentSong = null;
-
+    
+    /**
+    * @desc Currently set volume
+    * @type int;
+    */
+    SongPlayer.volume = 100;
+    
     /**
     * @desc Current playback time (in seconds) of currently playing song
     * @type {Number}
     */
     SongPlayer.currentTime = null;
+    
+    /**
+    * @function setVolume
+    * @desc sets the volume of the song
+    * @param {int} volume
+    */
+    SongPlayer.setVolume = function(volume)
+    {
+      currentBuzzObject.setVolume(volume);
+      SongPlayer.volume = volume;
+    };
+    
     /**
     * @function play
     * @desc Handles the logic of playing a song.
