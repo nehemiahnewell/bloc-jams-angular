@@ -170,6 +170,21 @@
         currentBuzzObject.setTime(time);
       }
     };
+    
+    /**
+    * @function toTime
+    * @desc changes tiem from seconds to minuites
+    * @param int
+    */
+    SongPlayer.toTime = function(time) {
+      if (typeof currentBuzzObject != "undefined" && currentBuzzObject != "null")
+      {
+        return buzz.toTimer(time);
+      }
+      else
+      return '-:--';
+    };
+    
     return SongPlayer;
   }
  
